@@ -30,49 +30,77 @@ html_string = """
 <html>
 <head>
 <style>
-body { font-family: Arial, sans-serif; }
-h2 { font-size: 2em; } 
-table { width: 80%; border-collapse: collapse; margin: 20px auto; }
-th { padding: 20px; text-align: center; font-size: 1em; }
-th.voter1 { text-align: left; }
-th.voter2 { text-align: right; }
-td { width: 50%; vertical-align: top; padding: 20px; word-wrap: break-word; font-size: 0.6em; gap: 10px; }
-td.voter1 { background-color: #e6f7ff; text-align: left; border-radius: 15px; }
-td.voter2 { background-color: #e8ffc6; text-align: right; border-radius: 15px; }
-
-/* Responsive font sizing */
-@media (max-width: 768px) {
-  th, td {
-    font-size: 0.8em;
-  }
+body {
+  font-family: Arial, sans-serif;
+  font-size: clamp(14px, 1vw + 0.4rem, 18px);
+  margin: 30px;
+  background-color: #fafafa;
 }
-@media (min-width: 769px) {
-  th, td {
-    font-size: 1.3em;
-  }
+
+h2 {
+  text-align: center;
+  font-size: clamp(24px, 3vw + 0.5rem, 36px);
+}
+
+/* Container for the entire debate */
+.debate {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* Each message bubble */
+.message {
+  display: flex;
+  max-width: 60%;
+  padding: 12px 18px;
+  border-radius: 15px;
+  word-wrap: break-word;
+  font-size: clamp(13px, 1vw + 0.3rem, 16px);
+}
+
+/* Voter 1: aligned left */
+.voter1 {
+  background-color: #e6f7ff;
+  align-self: flex-start;
+  text-align: left;
+}
+
+/* Voter 2: aligned right */
+.voter2 {
+  background-color: #e8ffc6;
+  align-self: flex-end;
+  text-align: right;
+}
+
+/* Responsive font tweaks */
+@media (max-width: 768px) {
+  body { font-size: 1.3em; }
+  .message { max-width: 100%; }
 }
 </style>
 </head>
 <body>
-<h2 style="text-align:center;">Voter Debate</h2>
-<table>
-<tr><th class='voter1'>Voter 1 [FOR]</th><th class='voter2'>Voter 2 [AGAINST]</th></tr>
+<h2>Voter Debate</h2>
+<div class="debate">
 """
 
 
-# loop through the conversation
+# Loop through conversation rows
+# Loop through conversation rows
 for idx, row in df_conversation.iterrows():
-    # Voter 1
-    html_string += f"<tr><td class='voter1'>{row['Voter 1 [FOR]']}</td><td></td></tr>\n"
-
-    # Voter 2
-    html_string += f"<tr><td></td><td class='voter2'>{row['Voter 2 [AGAINST]']}</td></tr>\n"
+    if pd.notna(row['Voter 1 [FOR]']):
+        html_string += f"<div class='message voter1'>{row['Voter 1 [FOR]']}</div>\n"
+    if pd.notna(row['Voter 2 [AGAINST]']):
+        html_string += f"<div class='message voter2'>{row['Voter 2 [AGAINST]']}</div>\n"
 
 html_string += """
-</table>
+</div>
 </body>
 </html>
 """
+
 
 
 # write file
