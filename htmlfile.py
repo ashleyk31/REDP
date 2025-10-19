@@ -3,23 +3,16 @@ pd.set_option("display.max_colwidth", None)
 df = pd.read_csv("../result_files/ballot_analysis.csv")
 
 # format data
-# print(df["debate"])
-# print(df.columns)
 conversation = df["debate"]
 split_list = conversation.iloc[0].split("<br><br>")
 df_split = pd.DataFrame([split_list])
-# print(df_split)
-
 df_transpose = df_split.T
-# print(df_transpose.shape)
-# print(df_transpose)
 
 # new dataframe for the conversation only
 df_conversation = pd.DataFrame({
     "Voter 1 [FOR]": df_transpose.iloc[::2, 0].reset_index(drop=True),
     "Voter 2 [AGAINST]": df_transpose.iloc[1::2, 0].reset_index(drop=True)
 })
-
 
 df_conversation["Voter 1 [FOR]"] = df_conversation["Voter 1 [FOR]"].str.split(": ", n=1).str[1]
 df_conversation["Voter 2 [AGAINST]"] = df_conversation["Voter 2 [AGAINST]"].str.split(": ", n=1).str[1]
@@ -34,7 +27,7 @@ html_string = """
 body {
   font-family: Arial, sans-serif;
   font-size: clamp(12px, 1.5vw + 0.4rem, 22px);
-  margin: 30px;
+  margin: 20px;
   background-color: #fafafa;
 }
 
@@ -50,41 +43,6 @@ h2 {
   margin-top: 20px;
 }
 
-/* Each message bubble */
-.message {
-  display: flex;
-  max-width: 70%;
-  padding: 12px 18px;
-  border-radius: 15px;
-  word-wrap: break-word;
-  font-size: clamp(13px, 1vw + 0.3rem, 16px);
-}
-
-/* Voter 1: aligned left */
-.voter1 {
-  background-color: #e8ffc6;
-  align-self: flex-start;
-  text-align: left;
-}
-
-/* Voter 2: aligned right */
-.voter2 {
-  background-color: #ffc6c6;
-  align-self: flex-end;
-  text-align: right;
-}
-
-.message {
-  display: inline-block;
-  position: relative;
-  max-width: 70%;
-  padding: 14px 18px;
-  border-radius: 20px;
-  font-size: clamp(13px, 1vw + 0.3rem, 16px);
-  word-wrap: break-word;
-  margin: 5px 0;
-}
-
 .message {
   display: inline-block;
   position: relative;
@@ -97,7 +55,7 @@ h2 {
   border: 2px solid #b7c2cc; 
 }
 
-/* --- Left bubble (Voter 1) --- */
+/* Left bubble (Voter 1) */
 .voter1 {
   background-color: #e8ffc6;
   align-self: flex-start;
@@ -134,7 +92,7 @@ h2 {
   margin-bottom: -11px;
 }
 
-/* --- Right bubble (Voter 2) --- */
+/* Right bubble (Voter 2) */
 .voter2 {
   background-color: #ffc6c6;
   align-self: flex-end;
@@ -188,7 +146,6 @@ h2 {
 
 
 # Loop through conversation rows
-# Loop through conversation rows
 for idx, row in df_conversation.iterrows():
     if pd.notna(row['Voter 1 [FOR]']):
         html_string += f"<div class='message voter1'>{row['Voter 1 [FOR]']}</div>\n"
@@ -200,8 +157,6 @@ html_string += """
 </body>
 </html>
 """
-
-
 
 # write file
 with open("conversation.html", "w") as f:
