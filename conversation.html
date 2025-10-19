@@ -2,15 +2,27 @@
 <html>
 <head>
 <style>
-body { font-family: sans-serif, Ariel;}
+body { font-family: Arial, sans-serif; }
 h2 { font-size: 2em; } 
 table { width: 80%; border-collapse: collapse; margin: 20px auto; }
 th { padding: 20px; text-align: center; font-size: 1em; }
 th.voter1 { text-align: left; }
 th.voter2 { text-align: right; }
-td { width: 50%; vertical-align: top; padding: 20px; word-wrap: break-word; font-size: 0.6em; }
+td { width: 50%; vertical-align: top; padding: 20px; word-wrap: break-word; font-size: 0.6em; gap: 10px; }
 td.voter1 { background-color: #e6f7ff; text-align: left; border-radius: 15px; }
 td.voter2 { background-color: #e8ffc6; text-align: right; border-radius: 15px; }
+
+/* Responsive font sizing */
+@media (max-width: 768px) {
+  th, td {
+    font-size: 0.8em;
+  }
+}
+@media (min-width: 769px) {
+  th, td {
+    font-size: 1.3em;
+  }
+}
 </style>
 </head>
 <body>
