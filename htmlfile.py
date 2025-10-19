@@ -30,21 +30,18 @@ html_string = """
 <html>
 <head>
 <style>
-body { font-family: sans-serif, Ariel; }
+body { font-family: sans-serif, Ariel;}
+h2 { font-size: 2em; } 
 table { width: 80%; border-collapse: collapse; margin: 20px auto; }
-th { padding: 20px; text-align: center; font-size: 18px; }
+th { padding: 20px; text-align: center; font-size: 1em; }
 th.voter1 { text-align: left; }
 th.voter2 { text-align: right; }
-td { width: 50%; vertical-align: top; padding: 30px; word-wrap: break-word; }
+td { width: 50%; vertical-align: top; padding: 20px; word-wrap: break-word; font-size: 0.6em; }
 td.voter1 { background-color: #e6f7ff; text-align: left; border-radius: 15px; }
 td.voter2 { background-color: #e8ffc6; text-align: right; border-radius: 15px; }
 </style>
 </head>
 <body>
-<h2 style="text-align:center;">Background </h2>
-<h2 style="text-align:center;">Ballot Measure </h2>
-<h2 style="text-align:center;">What does a YES vote mean? </h2>
-<h2 style="text-align:center;">What does a NO vote mean? </h2>
 <h2 style="text-align:center;">Voter Debate</h2>
 <table>
 <tr><th class='voter1'>Voter 1 [FOR]</th><th class='voter2'>Voter 2 [AGAINST]</th></tr>
