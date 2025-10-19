@@ -29,20 +29,20 @@ print(df_conversation)
 html_string = """
 <html>
 <head>
+<meta charset="UTF-8">
 <style>
 body {
   font-family: Arial, sans-serif;
-  font-size: clamp(14px, 1vw + 0.4rem, 18px);
+  font-size: clamp(12px, 1.5vw + 0.4rem, 22px);
   margin: 30px;
   background-color: #fafafa;
 }
 
 h2 {
   text-align: center;
-  font-size: clamp(24px, 3vw + 0.5rem, 36px);
+  font-size: clamp(20px, 3vw + 0.5rem, 40px);
 }
 
-/* Container for the entire debate */
 .debate {
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@ h2 {
 /* Each message bubble */
 .message {
   display: flex;
-  max-width: 60%;
+  max-width: 70%;
   padding: 12px 18px;
   border-radius: 15px;
   word-wrap: break-word;
@@ -62,19 +62,19 @@ h2 {
 
 /* Voter 1: aligned left */
 .voter1 {
-  background-color: #e6f7ff;
+  background-color: #e8ffc6;
   align-self: flex-start;
   text-align: left;
 }
 
 /* Voter 2: aligned right */
 .voter2 {
-  background-color: #e8ffc6;
+  background-color: #ffc6c6;
   align-self: flex-end;
   text-align: right;
 }
 
-/* Responsive font tweaks */
+/* Mobile view adjustments */
 @media (max-width: 768px) {
   body { font-size: 1.3em; }
   .message { max-width: 100%; }
@@ -85,6 +85,7 @@ h2 {
 <h2>Voter Debate</h2>
 <div class="debate">
 """
+
 
 
 # Loop through conversation rows
