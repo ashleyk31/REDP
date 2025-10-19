@@ -74,11 +74,110 @@ h2 {
   text-align: right;
 }
 
+.message {
+  display: inline-block;
+  position: relative;
+  max-width: 70%;
+  padding: 14px 18px;
+  border-radius: 20px;
+  font-size: clamp(13px, 1vw + 0.3rem, 16px);
+  word-wrap: break-word;
+  margin: 5px 0;
+}
+
+.message {
+  display: inline-block;
+  position: relative;
+  max-width: 70%;
+  padding: 14px 18px;
+  border-radius: 20px;
+  font-size: clamp(13px, 1vw + 0.3rem, 16px);
+  word-wrap: break-word;
+  margin: 8px 0;
+  border: 2px solid #b7c2cc; 
+}
+
+/* --- Left bubble (Voter 1) --- */
+.voter1 {
+  background-color: #e8ffc6;
+  align-self: flex-start;
+  text-align: left;
+}
+
+/* Border layer for tail */
+.voter1::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25px;
+  width: 0;
+  height: 0;
+  border: 13px solid transparent;
+  border-top-color: #b7c2cc;
+  border-bottom: 0;
+  border-left: 0;
+  margin-bottom: -13px;
+}
+
+/* Fill layer for tail */
+.voter1::after {
+  content: "";
+  position: absolute;
+  bottom: 2px; /* slightly higher to show border below */
+  left: 27px;  /* offset inward so the border shows */
+  width: 0;
+  height: 0;
+  border: 11px solid transparent;
+  border-top-color: #e8ffc6;
+  border-bottom: 0;
+  border-left: 0;
+  margin-bottom: -11px;
+}
+
+/* --- Right bubble (Voter 2) --- */
+.voter2 {
+  background-color: #ffc6c6;
+  align-self: flex-end;
+  text-align: right;
+}
+
+/* Border layer for tail */
+.voter2::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 25px;
+  width: 0;
+  height: 0;
+  border: 13px solid transparent;
+  border-top-color: #b7c2cc;
+  border-bottom: 0;
+  border-right: 0;
+  margin-bottom: -13px;
+}
+
+/* Fill layer for tail */
+.voter2::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  right: 27px;
+  width: 0;
+  height: 0;
+  border: 11px solid transparent;
+  border-top-color: #ffc6c6; /* bubble color */
+  border-bottom: 0;
+  border-right: 0;
+  margin-bottom: -11px;
+}
+
+
 /* Mobile view adjustments */
 @media (max-width: 768px) {
   body { font-size: 1.3em; }
-  .message { max-width: 100%; }
+  .message { max-width: 80%; }
 }
+
 </style>
 </head>
 <body>
